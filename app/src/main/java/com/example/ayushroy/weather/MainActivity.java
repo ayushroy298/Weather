@@ -68,14 +68,15 @@ public class MainActivity extends AppCompatActivity {
                     JSONObject jsonPart= arr.getJSONObject(i);
                     main.setText("Main: " + jsonPart.getString("main"));
                     description.setText("Description: " + jsonPart.getString("description"));
-                    //Log.i("main",jsonPart.getString("main"));
-                    //Log.i("description",jsonPart.getString("description"));
+                    Log.i("main",jsonPart.getString("main"));
+                    Log.i("description",jsonPart.getString("description"));
                 }
                 JSONObject jsonTemp=new JSONObject(tempInfo);
-                double mx,mn;
+                double mx,mn,h;
+                h=Double.parseDouble(jsonTemp.getString("humidity"));
                 mx=Double.parseDouble(jsonTemp.getString("temp_max"))-273.15;
                 mn=Double.parseDouble(jsonTemp.getString("temp_min"))-273.15;
-
+                hum.setText("Humidity : " + String.format("%.1f",h));
                 max.setText("Maximum Temperature : " + String.format("%.1f",mx) + "°C");
                 min.setText("Minimum Temperature : " + String.format("%.1f",mn) + "°C");
             }
@@ -90,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
     TextView description;
     TextView max;
     TextView min;
+    TextView hum;
 
     public void click(View view)
     {
@@ -127,6 +129,7 @@ public class MainActivity extends AppCompatActivity {
         description=findViewById(R.id.descriptionTextView);
         max=findViewById(R.id.maxTextView);
         min=findViewById(R.id.minTextView);
+        hum=findViewById(R.id.humTextView);
 
     }
 }
